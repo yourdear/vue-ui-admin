@@ -14,20 +14,16 @@
             }
         },
         created() {
-            let obj = {
-                name: 'lilei',
-                age: 28,
-                pingjia:{
-                    good: 25,
-                    bad: 44
-                }
+            const obj1 = {
+                name: 'sj'
             }
-            let copy = Object.assign({},obj)
-            //这个时候会拷贝第一层的值，但是对象里面的对象是浅拷贝，拷贝的是引用，测试一下
-            copy.name = 'laowang'
-            copy.age = 28
-            copy.pingjia.good = 55
-            console.log(obj)
+            const obj2 = {
+                age: 25
+            }
+            const newobj = Object.assign({},obj1)
+            newobj.name = 'zs'
+            console.log(newobj) //{name:'sj',age: 25}
+            console.log(obj1) //{name:'sj',age: 25}
         },
         mounted() {
 
