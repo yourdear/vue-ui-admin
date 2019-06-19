@@ -54,10 +54,10 @@ pathRewrite里面的配置'^/api'对应的value就要是''
     console.log(obj1) //{name:'sj',age: 25}
 
 ```
-#####2019-06-18
+##### 2019-06-18
 1.我们访问对象的某个属性通常不确定某个属性是否存在，尤其是深层嵌套的时候，要一级一级的去判断，让代码变得不好维护
 现在有一款插件可以帮我们实现这个多级访问的问题不存在的话会直接返回undefind而不会报错，插件安装地址https://babeljs.io/docs/en/babel-plugin-proposal-optional-chaining
 npm安装之后，在.babelrc（老版本）或者babel.config.js（新版本）中添加plugin
 
-#####2019-06-19
+##### 2019-06-19
 1.nuxt动态路由 即动态相加的路由应该写成这样:to="'/goods/detail/' + item.id"
