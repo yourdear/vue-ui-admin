@@ -53,6 +53,7 @@ module.exports = {
 ```
 - path.resolve() 方法会把一个路径或路径片段的序列解析为一个绝对路径。从盘符开始
 - __dirname: 当前项目的名称
+- 安装配置后每次需要把dist包已存在内容清掉，然后再去打包，需要安装下面的插件
 ```
 npm install clean-webpack-plugin --save-dev
 
@@ -68,7 +69,7 @@ module.exports = {
 
 ```
 
-- 安装配置后每次打包前会把，dist包内容清掉，然后再去打包
+
 
 4.安装babel 用来编译ES6让浏览器认识
 - 安装
