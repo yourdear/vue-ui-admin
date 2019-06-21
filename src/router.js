@@ -17,6 +17,7 @@ export default new Router({
     },
     {
       path: '/element',
+      name: 'elment ui',
       component: reslove => require(['./components/layout/singlePage'],reslove),
       children: [
         {
@@ -26,6 +27,17 @@ export default new Router({
         },
       ]
     },
-
+    {
+      path: '/css',
+      name: 'css',
+      component: reslove => require(['./components/layout/singlePage'],reslove),
+      children: [
+        {
+          path: 'flex',
+          name: 'flex',
+          component: reslove => require(['./components/css/flex'],reslove)
+        },
+      ]
+    }
   ]
 })

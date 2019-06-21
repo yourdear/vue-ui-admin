@@ -307,7 +307,7 @@ module: {
 - webpack要点记录
 
 9.js tree Shaking
-对于非第三方应用，会自己进行优化，依据就是ES6的模块系统
+对于非第三方应用，会自己进行优化，依据就是ES6的模块依赖系统
 对于第三方插件，看看此插件是否符合ES模板系统规范，如loadsh正常引入是npm install lodash --save但是这个是没有摇树的
 npm install lodash-es --save 这样安装就会摇树优化，这个时候我们在某个js组件里使用
 ```
@@ -324,6 +324,8 @@ npm i glob-all purify-css purifycss-webpack --save-dev
 ```
 - webpack.config.js
 ```
+    const PurifyCSS = require('purifycss-webpack')
+    const glob = require('glob-all')
     module.exports = {
     module: {
             rules: [
@@ -371,24 +373,37 @@ npm i glob-all purify-css purifycss-webpack --save-dev
 
 ```
 npm install url-loader file-loader --save-dev
+//安装图片压缩插件
+npm i image-webpack-loader --save-dev
 ```
 ```
 module.exports = {
 module: {
     rules: [
-      {
-        test: /\.(png|jpg|jpeg|gif)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: '[name]-[hash:5].min.[ext]',
-              outputPath: 'images/', //输出到 images 文件夹
-              limit: 20000 //把小于 20kb 的文件转成 Base64 的格式
-            }
-          }
-        ]
-      }
+           {
+                              loader: 'url-loader',
+                              options: {
+                                  name: '[name]-[hash:5].min.[ext]',
+                                  limit: 1000, // size <= 1KB
+                                  outputPath: 'images/'
+                              }
+                          },
+                          // img-loader for zip img
+                          {
+                              loader: 'image-webpack-loader',
+                              options: {
+                                  // 压缩 jpg/jpeg 图片
+                                  mozjpeg: {
+                                      progressive: true,
+                                      quality: 65 // 压缩率
+                                  },
+                                  // 压缩 png 图片
+                                  pngquant: {
+                                      quality: '65-90',
+                                      speed: 4
+                                  }
+                              }
+                          }
     ]
   }
 }

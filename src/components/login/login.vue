@@ -1,19 +1,34 @@
 <template>
     <div class="login">
-<!--        <el-button type="primary" @click="goIndex">登录跳转</el-button>-->
-        <div class="wrapper">
-            <div class="inner"></div>
-
+        <div class="login-box">
+            <h2 class="login-title">登录</h2>
+            <el-form :model="formInline">
+                <el-form-item>
+                    <el-input v-model="formInline.user" placeholder="审批人"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-input v-model="formInline.password" placeholder="审批人"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">查询</el-button>
+                </el-form-item>
+            </el-form>
         </div>
     </div>
 </template>
 <script>
     export default {
         data() {
-            return {}
+            return {
+                labelPosition: 'right',
+                formInline: {
+                    user: '',
+                    password: ''
+                }
+            }
         },
         methods: {
-            goIndex() {
+            onSubmit() {
                 this.$router.push("/element/upload")
             }
         },
@@ -21,35 +36,36 @@
           if(new Boolean(false)){
               console.log('comein')
           }
-
-
         },
         mounted() {
-            const obj = {
-                person: {
-                    intresting: {
-                        read: 'xuanhuan'
-                    }
-                }
-            }
 
-            console.log(obj?.person?.intresting?.read)
         },
 
     }
 </script>
-
+<style>
+    .el-form{
+        margin: 0 50px;
+    }
+    .el-button--primary{
+        width: 100%;
+    }
+</style>
 <style scoped lang="stylus">
-    .login
-        display flex
-        justify-content center
-        align-items center
-        .wrapper
-            background cadetblue
-            overflow auto
-            .inner
-                position sticky
-                top 0
-                height 200px
-                background darkturquoise
+   .login
+        position relative
+        width 100%
+        height 100%
+        background cadetblue
+        .login-box
+            position absolute
+            left 50%
+            top: 50%
+            transform translate(10%,-30%)
+            width 500px
+            height 300px
+            background #fff
+            .login-title
+                text-align center
+
 </style>

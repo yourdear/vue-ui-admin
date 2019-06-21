@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="upload">
         <el-upload
                 ref="upload"
                 class="upload-demo"
@@ -81,6 +81,8 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="stylus">
+    .upload
+        padding  20px
+        box-sizing border-box
 </style>

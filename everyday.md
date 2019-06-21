@@ -61,3 +61,27 @@ npm安装之后，在.babelrc（老版本）或者babel.config.js（新版本）
 
 ##### 2019-06-19
 1.nuxt动态路由 即动态相加的路由应该写成这样:to="'/goods/detail/' + item.id"
+##### 2019-06-20
+1.css选择器之 +
+```
+     div + p {
+        lineheight: 30px
+     }   
+    .inner + .inner {
+        background: red
+    }
+```
+- div后面的所有p元素
+- 第一个.inner之后的所有.inner
+##### 2019-06-21
+1.::after用法
+```
+::after {
+    content: url()
+    content: '\260E'
+    content： ''
+}
+```
+- 伪元素添加了一个页面中没有的元素（只是从视觉效果上添加了，不是在文档树中添加），伪类是给页面中已经存在的元素添加一个类。
+- 不占用Dom节点
+- content可以是一个路径也可以是图标字体或者字符串
