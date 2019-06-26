@@ -85,3 +85,54 @@ npm安装之后，在.babelrc（老版本）或者babel.config.js（新版本）
 - 伪元素添加了一个页面中没有的元素（只是从视觉效果上添加了，不是在文档树中添加），伪类是给页面中已经存在的元素添加一个类。
 - 不占用Dom节点
 - content可以是一个路径也可以是图标字体或者字符串
+##### 2019-06/24
+1.作用域在函数定义时就已经确定了。而不是在函数调用时确定
+2.this是在调用时确定
+```
+ var x = 10
+    function f() {
+        console.log(x)
+    }
+    function show(fn) {
+        var x = 20
+        fn()
+    }
+    show(f)
+```
+##### 2019-06-25
+1.str.match(reg) 返回匹配的值
+2.str.replace(reg,value) 把str的reg替换成value
+
+###### 2019-06-26
+1.关于axios的使用问题 excel post导出
+问题描述：原先用的是h5的a标签特性使用get请求（需要全路径），但是由于参数过多，和后端商量用post,下载excel
+表格
+遇到的问题，正常请求通过a标签的href属性也看到了后台返回的二进制数据，但是打开表格缺显示undefind
+最后发现是需要在请求的时候配置responseType: 'blob'，不然返回的二进制文档流不会被解析
+```
+//在常规的post请求后面加上一个config对象配置
+export const exportd = (url, params, config, callback, errorback, falseback) => {
+  return axios.post(`${base}` + url, params, config)
+    .then((res) => {
+      if (res && callback) { callback(res.data, res) }
+      if (!res) {
+        falseback()
+      }
+    })
+    .catch((error) => {
+      if (errorback) { errorback(error) } else { console.log(error); console.log(error.response + qs.stringify(params)) }
+    })
+}
+// config = {responseType: 'blob'}
+ exportd('/bot-admin/api/leaveMessage/down', Object.assign(params), {responseType: 'blob'}, (res) => {
+         
+          let url = window.URL.createObjectURL(new Blob([res], {type: 'application/vnd.ms-excel'})); // 处理文档流
+          let link = document.createElement('a');
+          link.style.display = 'none';
+          link.href = url;
+          link.download = '留言列表.xls';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        })
+```

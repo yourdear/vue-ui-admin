@@ -408,3 +408,78 @@ module: {
   }
 }
 ```
+12.字体文件处理
+可以处理图标字体等特殊的字体
+- 只需要配置wepack文件就可以使用了
+-webpack.config.js
+```
+    module.exports = {
+    module: {
+        rules: [
+                {
+                       test: /\.(eot|woff2?|ttf|svg)$/,
+                       use: [
+                         {
+                           loader: 'url-loader',
+                           options: {
+                             name: '[name]-[hash:5].min.[ext]',
+                             limit: 5000, // fonts file size <= 5KB, use 'base64'; else, output svg file
+                             publicPath: 'fonts/',
+                             outputPath: 'fonts/'
+                           }
+                         }
+                       ]
+                     }
+        ]
+      }
+    }
+```
+13.开发模式与webpack-dev-server
+开发中我们通常需要在本地启一个服务，以便于调试代码
+-安装依赖
+```
+npm i webpack-dev-server --save-dev
+```
+-修改package.json dev启动命令
+```
+    {
+      .....
+      "scripts": {
+        "dev": "webpack-dev-server --open",
+        "build": "webpack --mode production"
+      },
+```
+- 修改webpack.config.js
+```
+    const webpack = require('webpack')
+    module.exports = {
+        mode: 'development', // 开发模式
+        devtool: 'source-map', // 开启调试
+      devServer: {
+          contentBase: path.join(__dirname, 'dist'),
+          port: 8000, // 本地服务器端口号
+          hot: true, // 热重载
+          overlay: true, // 如果代码出错，会在浏览器页面弹出“浮动层”。类似于 vue-cli 等脚手架
+          proxy: {
+            // 跨域代理转发
+            '/comments': {
+              target: 'https://m.weibo.cn',
+              changeOrigin: true,
+              logLevel: 'debug',
+              headers: {
+                Cookie: ''
+              }
+            }
+          },
+          historyApiFallback: {
+            // HTML5 history模式
+            rewrites: [{ from: /.*/, to: '/index.html' }]
+          }
+        },
+      plugins: [
+          new webpack.HotModuleReplacementPlugin(), // 热部署模块
+          new webpack.NamedModulesPlugin(),
+      ]
+     
+    }
+```

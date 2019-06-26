@@ -37,6 +37,11 @@ export default new Router({
           name: 'flex',
           component: reslove => require(['./components/css/flex'],reslove)
         },
+        {
+          path: 'fullScreen',
+          name: 'fullScreen',
+          component: reslove => require(['./components/css/fullScreen'],reslove)
+        },
       ]
     }
   ]
