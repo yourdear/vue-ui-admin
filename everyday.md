@@ -136,3 +136,7 @@ export const exportd = (url, params, config, callback, errorback, falseback) => 
           document.body.removeChild(link);
         })
 ```
+2.关于422报错问题
+证明接口已经通了，但是可能请求的方式不对，比如后台是post接口，前端发送请求的时候是get
+;或者是请求的参数有问题，这个需要联合后台去查，比如传参的格式（是否序列化），比如需要你传的某个字段是数组传成了字符串
+或者空值情况的传递问题
