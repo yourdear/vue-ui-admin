@@ -137,6 +137,30 @@ export const exportd = (url, params, config, callback, errorback, falseback) => 
         })
 ```
 2.关于422报错问题
-证明接口已经通了，但是可能请求的方式不对，比如后台是post接口，前端发送请求的时候是get
-;或者是请求的参数有问题，这个需要联合后台去查，比如传参的格式（是否序列化），比如需要你传的某个字段是数组传成了字符串
-或者空值情况的传递问题
+证明接口已经通了，但是可能请求的方式不对
+- 比如后台是post接口，前端发送请求的时候是get
+- 或者是请求的参数有问题，这个需要联合后台去查，比如传参的格式（是否序列化）
+- 比如需要你传的某个字段是数组传成了字符串
+- 或者空值情况的传递问题
+##### 2019-06-27
+1.js array
+- arr.indexof(value)的用法  返回value元素在arr中的下标，不存在返回-1
+
+2.vue computed watch
+- computed的作用是根据别的东西来计算一个值,是被别的值触发；
+  - watch的作用是监听自身的变化来触发别的
+  - computed是根据别的值改变自己
+```
+    computed () {
+        return this.num1 + this.num2
+    }
+```
+3.工具篇
+- 购买了一个webstrom的永久破解码
+- debugger失效的问题
+    - 需要在浏览器安装JetBrains IDE Support，在扩展程序选项里调整接口
+    - 看webstrom里plugins的installed选项里是否有javascript debugger,正常都是会自动安装的，除非你取消了，那就需要重新下载
+    - 查看settings -> debugger port端口是否与JetBrains IDE Support设置的端口一致
+    - 启动程序比如vue，左上角切换到dev或者是server
+    - 在要使用断点的地方敲debugger命令
+    - 在浏览器上触发事件就可以正常使用了
