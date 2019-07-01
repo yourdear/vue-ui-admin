@@ -170,4 +170,39 @@ export const exportd = (url, params, config, callback, errorback, falseback) => 
 - 不同元素添加出来的id一定不能一样，因为好多人都会以id区分同一个数组的不同元素
 2.v-viewer插件，可以放大图片支持鼠标缩放，支持图片切换
 ##### 2019-07-01
-![解构知识点](./src/assets/mdImages/z-index.png)
+1.解构：等号两边的模式相同，左边的变量就会被赋予对应的值 
+- 模式相同可以粗狂的理解为类型相同，但是这句话肯定是不完全对的，后面再说
+- 数组解构
+```
+1.成功解构 普通解构，嵌套解构，不完全解构，默认结构
+//普通解构
+let [a, b, c] = [1, 2, 3];    a // 1, b // 2,  c // 3
+let [head, ...tail] = [1, 2, 3, 4]; head // 1,tail // [2, 3, 4]
+//嵌套解构
+let [a,[[b],c]] = [1,[[2],3]] a // 1, b // 2,  c // 3
+// 不完全解构 类似于不成功解构，没被解构的值为undefind
+let [a,[[],c]] = [1,[[2],3]] a // 1, c // 3, b // undefind
+// 默认结构  只有严格等于undefind才会被默认机构（为null不会被默认解构）
+let [a, b=4] = [1] a = 1, b = 4
+let [a = 1,b] = [undefind, 4] a = 1, b = 4
+2.错误解构
+let [foo] = 1;
+let [foo] = false;
+let [foo] = NaN;
+let [foo] = undefined;
+let [foo] = null;
+let [foo] = {};
+```
+2.vue相关--watch与computed那个先执行
+computed执行完之后，watch才会执行
+
+3.js Array splice,像数组中添加和删除元素，然后返回被删除元素，会改变原数组
+- 第一个参数是数组的下标，第二个参数是要删除的个数，后面的参数都是新增
+- 如果只有一个参数，那么就从当前下标开始删到最后（包括当前下标元素）
+- splice函数会返回一个数组，里面是被删除的元素
+```
+    const arr = ['admin', 'xiaoming', 'xiaohong', 'xiaomei']
+    const newArr = arr.splice(3, 1, '小淘气')
+    console.log(arr) //['admin', 'xiaoming', 'xiaohong', '小淘气']
+    console.log(newArr) // ["xiaomei"]
+```
