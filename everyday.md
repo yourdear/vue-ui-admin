@@ -169,3 +169,5 @@ export const exportd = (url, params, config, callback, errorback, falseback) => 
 - 遍历的东西同一个元素即使背景图片不同也不能使用两个元素，应该是通过遍历数组的下标能判定，添加不同的class
 - 不同元素添加出来的id一定不能一样，因为好多人都会以id区分同一个数组的不同元素
 2.v-viewer插件，可以放大图片支持鼠标缩放，支持图片切换
+##### 2019-07-01
+![解构知识点](../src/assets/mdImages/z-index.png)
