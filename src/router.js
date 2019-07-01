@@ -42,6 +42,11 @@ export default new Router({
           name: 'fullScreen',
           component: reslove => require(['./components/css/fullScreen'],reslove)
         },
+        {
+          path: 'boxReflex',
+          name: 'boxReflex',
+          component: reslove => require(['./components/css/box-reflex'],reslove)
+        },
       ]
     }
   ]
