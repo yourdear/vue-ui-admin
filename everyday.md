@@ -206,3 +206,70 @@ computed执行完之后，watch才会执行
     console.log(arr) //['admin', 'xiaoming', 'xiaohong', '小淘气']
     console.log(newArr) // ["xiaomei"]
 ```
+##### 2019-07-02
+1.跳出多重循环后继续执行下一次循环 使用标记语句
+- continue是跳出当前循环，继续执行下一次循环，一般配合if使用
+- 标记语句是跳出多重循环，继续执行下一次循环 使用一个变量标记一下，然后if的时候continue + 标记
+```
+firstLoop: 
+for (let i = 0; i < 3; i++) { 
+   for (let j = 0; j < 3; j++) {
+      if (i === j) {
+         continue firstLoop; // 继续 firstLoop 循环
+         // break firstLoop; // 中止 firstLoop 循环
+      }
+      console.log(`i = ${i}, j = ${j}`);
+   }
+}
+// 输出
+i = 1, j = 0
+i = 2, j = 0
+i = 2, j = 1
+```
+2.利用a标签来解析一个url,可以快速的帮我们返回端口参数等一系列的东西，而不需要我们自己费劲的去截取
+```
+function parseURL(url) {
+    var a =  document.createElement('a');
+    a.href = url;
+    return {
+        host: a.hostname,
+        port: a.port,
+        query: a.search,
+        params: (function(){
+            var ret = {},
+                seg = a.search.replace(/^\?/,'').split('&'),
+                len = seg.length, i = 0, s;
+            for (;i<len;i++) {
+                if (!seg[i]) { continue; }
+                s = seg[i].split('=');
+                ret[s[0]] = s[1];
+            }
+            return ret;
+        })(),
+        hash: a.hash.replace('#','')
+    };
+}
+
+```
+##### 2019-07-02
+1.遇到一个有意思的问题，我有一个值通过computed从store(vuex)获取的，然后再mounted调用方法
+发送请求用到了这个值作为参数，结果debugger下来发现mounted会先执行然后再执行computed
+的值，所以这个值恒为空，出现查的数据不对，因为这个是子组件，所以有三个方法解决这个问题
+- 通过父组件传递--props
+- 不使用computed直接在mounted/created里获取这个值
+- 或者使用watch监听数据变化后发送请求，并设置immediate: true页面初始化执行一次
+2.js Array reduce
+- reduce可以接受两个参数
+- 第一个参数是一个callback函数，接受四个值
+- callback的第一个值（取名firstChild）取决于reduce的第二个参数(value)，如果存在第二个参数value，那么firstChild就等于value,否则firstChild
+就等于数组的第一个元素
+- callback函数的第二个值currentValue表示当前值，也取决于value,如果value有值就从下标0开始，value不传就从下标1开始
+- callback函数的第三个第四个分别是index下标和arr原数组
+```
+const arr = [1,2,3,4,5]
+            let result = arr.reduce((firstChild, currentValue, index, arr)=>{
+                return firstChild + currentValue
+            },6)
+            console.log(result)
+```
+3.调试代码的心得
