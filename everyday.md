@@ -273,3 +273,56 @@ const arr = [1,2,3,4,5]
             console.log(result)
 ```
 3.调试代码的心得
+- 看借口，返回的东西，状态码
+- 调试的时候发现错误如果有几种解决方案可以系统的想一遍，或者那笔画一画对比一下
+- 不能仅凭臆想去猜测
+4.防止浏览器跳转刷新后会清除掉network之前的接口
+- preserve log勾上就可以了
+##### 2019-07-03
+1. JS array map
+- 需要return关键字返回一个新数组
+- 不会修改原数组，这句话应该理解为不会修改栈内存存储的东西
+因为数组里面就是单个的数字或字符串什么的，就不会改变
+如果是对象的话，对象指向的内存地址不会改变，内存地址对应的值是会被改变的
+```
+    const arr = [{name: 'zs'},{name: 'ls'}]
+    const newArr = arr.map((item) => {
+       item.age = 23
+       return item
+    })
+    console.log(newArr) // [{name: "zs", age: 23}, {name: "ls", age: 23}]
+    console.log(arr) // [{name: "zs", age: 23}, {name: "ls", age: 23}]
+    console.log(arr === newArr) //虽然值完全相等，但是他们指向不同的内存地址，所以是不相等的
+```
+2.vue keep-alive
+- 缓存组件，缓存过得组件生命周期内的都行不会再次被执行，从新进入这个页面会缓存第一次进来的东西
+- include，exclude表示那些组件需要缓存那些不需要缓存（可以通过组件的名字，在组件上加上is='组件名'），二者都可以用逗号分隔字符串、正则表达式或一个数组来表示：
+- vue2.0支持通过路由来配置 meta: {keepAlive: true/false},然后直接v-if来判断
+- activated,deactivated这两个生命周期函数需要搭配keep-alive组件生效，activated表示
+再次进入被缓存组件时触发，另一表示离开时触发
+一个表示
+```
+<keep-alive include="test-keep-alive">
+  <component></component>
+</keep-alive>
+
+// vue2.0路由
+ {
+      path: '/',
+      name: 'Home',
+      component: Home ,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
+    }
+    
+ <template>
+   <div id="app">
+     <keep-alive>
+       <router-view v-if="$route.meta.keepAlive"></router-view>
+     </keep-alive>
+     <router-view v-if="!$route.meta.keepAlive"></router-view>
+   </div>
+ </template>  
+```
+ 

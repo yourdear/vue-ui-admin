@@ -20,15 +20,14 @@
             return {}
         },
         created() {
-            // reduce接受两个参数,
-            const arr = [1,2,3,4,5]
-            let result = arr.reduce((firstChild, currentValue, index, arr)=>{
-                console.log(currentValue)
-                console.log(index)
-                console.log(arr)
-                return firstChild + currentValue
-            },6)
-            console.log(result)
+           const arr = [{name: 'zs'},{name: 'ls'}]
+           const newArr = arr.map((item) => {
+               item.age = 23
+               return item
+           })
+            console.log(newArr) // [{name: "zs", age: 23}, {name: "ls", age: 23}]
+            console.log(arr) // [{name: "zs", age: 23}, {name: "ls", age: 23}]
+            console.log(arr === newArr) //虽然值完全相等，但是他们指向不同的内存地址，所以是不相等的
         }
     }
 </script>
