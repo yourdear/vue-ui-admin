@@ -47,6 +47,11 @@ export default new Router({
           name: 'boxReflex',
           component: reslove => require(['./components/css/box-reflex'],reslove)
         },
+        {
+          path: 'svgIcon',
+          name: 'svgIcon',
+          component: reslove => require(['./components/css/svgicon'],reslove)
+        },
       ]
     }
   ]
