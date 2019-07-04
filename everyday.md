@@ -336,3 +336,61 @@ const arr = [1,2,3,4,5]
 https://api.it120.cc 
 - 本地请求https://api.it120.cc/zxw/ + url
 - 已调试通
+2.本地配置了svgicon通过阿里的fonticon
+- 下载到本地
+![图片](./src/assets/mdImages/20190704/first.png)
+- 拷贝到项目 可以在assets下新建一个文件夹放进去
+ ![图片](./src/assets/mdImages/20190704/second.jpg)
+ - main.js全局引用
+ ```
+ import Iconsvg from './components/common/IconSvg'
+```
+- 封装成组件 在components下新建common文件夹，在common新建IconSvg.vue
+```
+<template>
+    <svg class="svg-icon" aria-hidden="true" @click="svgClick($event)">
+        <use :xlink:href="iconName"></use>
+        </svg>
+        </template>
+
+        <script>
+    export default {
+        name: 'icon-svg',
+        props: {
+            iconClass: {
+                type: String,
+                required: true
+            }
+        },
+        computed: {
+            iconName() {
+                return `#${this.iconClass}`
+            }
+        },
+        methods: {
+            svgClick(e) {
+                this.$emit('parengSvgClick', e)
+            }
+        }
+    }
+</script>
+
+<style>
+    .svg-icon {
+        width: 1em;
+        height: 1em;
+        font-size: 18px;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+    }
+</style>
+```
+- 在main.js注册成全局组件
+```
+Vue.component('icon-svg', Iconsvg) //注册为全局组件
+```
+- 使用 iconClass的名字可以在下载的文件iconfont.css找到
+```
+ <icon-svg iconClass="icon-bianji"></icon-svg>
+```

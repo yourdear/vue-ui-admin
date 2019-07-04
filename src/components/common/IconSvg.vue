@@ -1,10 +1,10 @@
 <template>
     <svg class="svg-icon" aria-hidden="true" @click="svgClick($event)">
         <use :xlink:href="iconName"></use>
-    </svg>
-</template>
+        </svg>
+        </template>
 
-<script>
+        <script>
     export default {
         name: 'icon-svg',
         props: {
