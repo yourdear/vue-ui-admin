@@ -42,6 +42,7 @@ pathRewrite里面的配置'^/api'对应的value就要是''
 注意两个参数的位置不能颠倒，以为第一个参数是目标对象，第二个参数是源对象，
 返回的是目标对象，即返回值和第一参数指向同一个内存空间
 拷贝的只是内存地址，所以修改一个另一个也会改变
+一般使用的时候可以Object.assign({},obj1,obj2...)
 ```
     const obj1 = {
           name: 'sj'
@@ -101,7 +102,20 @@ npm安装之后，在.babelrc（老版本）或者babel.config.js（新版本）
 ```
 ##### 2019-06-25
 1.str.match(reg) 返回匹配的值
+```
+    let str = 'zhuxinweizhuxinwei'
+    let reg = /zhu/g  //正则表达式没如果传入的值不是正则会隐式的new
+    let value = str.match(reg) // ["zhu", "zhu"]
+```
 2.str.replace(reg,value) 把str的reg替换成value
+- 不会改变原有的数组
+- 返回一个新的数组
+```
+    let str = 'zhuxinweizhuxinwei'
+    let reg = /zhu/g  //正则表达式没如果传入的值不是正则会隐式的new
+    let newstr = str.replace(reg,'fan') // 'fanxinweifanxinwei'
+
+```
 
 ###### 2019-06-26
 1.关于axios的使用问题 excel post导出
@@ -394,3 +408,5 @@ Vue.component('icon-svg', Iconsvg) //注册为全局组件
 ```
  <icon-svg iconClass="icon-bianji"></icon-svg>
 ```
+##### 2019-07-05
+1.作业 tranfrom与translate的区别
