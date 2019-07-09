@@ -21,6 +21,7 @@
         },
         created() {
 
+            setTimeout('console.log("ddd")' ,10)
         }
     }
 </script>
