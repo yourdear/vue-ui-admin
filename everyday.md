@@ -439,8 +439,8 @@ Vue.component('icon-svg', Iconsvg) //注册为全局组件
   ##### 2019-07-16
   1.路由的导航守卫
    - 全局守卫（需要写到main.js或者把js文件引入到main.js）
-   ```
    //前置守卫
+   ```
    /*
    * to 要进入的路由
    * from 从那个路由离开
@@ -455,9 +455,8 @@ Vue.component('icon-svg', Iconsvg) //注册为全局组件
   }
 })
 ```
-
-```
 //后置守卫
+```
 router.afterEach((to,from)=>{
   alert("after each");
 })
@@ -502,3 +501,12 @@ const route = [
  }
 ]
 ```
+2.扩展运算符
+ - 函数调用使用扩展运算符
+ - 数组和对象的拷贝
+ ```
+  const arr = [1,2,3]
+  
+ ```
+ - 构造字面量数组
+ - 字符串转数组
