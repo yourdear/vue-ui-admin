@@ -7,7 +7,7 @@
         <ul class="router-ul">
             <li v-for="item in liname" :key="item.name" class="router-li">
                 {{item.name}}
-                <div v-for="list in item.children" :key="list.name">
+                <div v-for="list in item.children" :key="list.name" class="router-wrapper">
                     <router-link  :to="item.path + '/' + list.path">{{list.name}}</router-link>
                 </div>
 
@@ -79,4 +79,10 @@
         .router-ul
             .router-li
                 color #727888
+                margin-left 20px
+                .router-wrapper
+                    a
+                        text-decoration none
+                        color: #fff
+
 </style>

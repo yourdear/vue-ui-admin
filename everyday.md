@@ -435,4 +435,106 @@ Vue.component('icon-svg', Iconsvg) //注册为全局组件
   - 服务端这个时候，可能还在传输数据，所以只能先暂时给客户端一个收到关闭连接请求的回复
   - 等数据真正传送完之后，服务端才能发送FIN报文
   - 当客户端收到服务端的FIN报文后会再次请求确认，这个时候服务端连接会立即关闭，然后客户端也会关闭连接    
-      
+##### 2019-07-15
+1.v-slot的用法
+ - 默认插槽，一般封装的组件里面只有一个插槽的话 可以使用默认插槽
+ ```
+    // 子组件 child.vue
+    <template>
+       <div>
+          <slot>我是默认插槽</slot>  
+       </div>
+    </template>
+    // 父组件
+    <template>
+        <div>
+          <child></child>
+        </div>
+    </template>
+    <script>
+        import child from './child'
+        export default {
+          components: {
+            child
+          }
+        }
+    </script>
+ ```
+ - 具名插槽子组件通过name属性命名，父组件通过v-slot来建立连接
+ 
+```
+// child.vue
+<template>
+    <div>
+        <slot name="test">
+            我是默认选项
+        </slot>
+        <slot>默认插槽</slot>
+    </div>
+</template>
+```
+// parent.vue
+```
+<template>
+    <div>
+        测试页面
+        <test-slot v-slot="test">
+          
+        </test-slot>
+    </div>
+</template>
+```
+- 多个具名插件传值 子组件通过name命名通过v-bind绑定数据，父组件通过v-slot:name="{绑定的名字}"来建立连接
+  ex: v-slot:test = '{user}' v-slot的别名是#所以可以简写成 #test= '{user}'
+// child.vue
+```
+    <template>
+        <div>
+            <slot name="test" :user="user">
+                我是默认选项
+            </slot>
+            <slot>默认插槽</slot>
+        </div>
+    </template>
+    
+    <script>
+        export default {
+            name: "TestSlot",
+            data() {
+                return {
+                    user: {
+                        name: 'zxw',
+                        age: 26
+                    }
+                }
+            }
+        }
+    </script>
+```
+// parent.vue
+```
+<template>
+    <div>
+        测试页面
+        <test-slot>
+            <template v-slot:test="{user}">
+                <div>{{user.name}}</div>
+                <div>{{user.age}}</div>
+            </template>
+        </test-slot>
+    </div>
+</template>
+
+<script>
+    import testSlot from './slot'
+    export default {
+        name: "test",
+        data() {
+            return {}
+        },
+        components: {
+            testSlot
+        }
+    }
+</script>
+```      
