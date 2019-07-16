@@ -454,12 +454,13 @@ Vue.component('icon-svg', Iconsvg) //注册为全局组件
     next('/login');
   }
 })
-
+```
+```
 //后置守卫
 router.afterEach((to,from)=>{
   alert("after each");
 })
-   ```
+```
 - 组件内的守卫 这里面的to,form与全局一致，区别在于next
 ```
 // 如果直接在前置路由里面访问data里面的数据是访问不到的，因为生命周期的关系，如果需要访问data里面的数据需要用next里面的回调
@@ -487,6 +488,7 @@ export default {
 }
 ```
 -路由独享守卫
+```
 const route = [
  {
   path: '',
@@ -497,3 +499,4 @@ const route = [
   }
  }
 ]
+```
