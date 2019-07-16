@@ -606,10 +606,37 @@ const route = [
 ```
 2.扩展运算符
  - 函数调用使用扩展运算符
- - 数组和对象的拷贝
+ 
+  ...arr返回的并不是一个数组，而是各个数组的值。只有[...arr]才是一个数组，所以...arr可以用来对方法进行传值
  ```
-  const arr = [1,2,3]
+  function myFunction(x, y, z) { 
+    console.log(x+""+y+""+z); 
+  } 
   
+  var args = [0, 1, 2]; 
+  myFunction(...args);
  ```
- - 构造字面量数组
+ - 数组和对象的拷贝,浅拷贝
+ ```
+  //数组拷贝
+  const arr = [1,2,3]
+  const list = [4,5,6]
+  const arr1 = [7,8,9]
+  const newArr = [...arr,...list,...arr1] //[1,2,3,4,5,6,7,8,9]
+  // 对象拷贝
+  const name = {name: 'zs'}
+  const age = {age: 25}
+  const sex = {sex: 'gril'}
+  const obj = {
+      ...name,
+      ...age,
+      ...sex
+  }
+  console.log(obj) // {name: "zs", age: 25, sex: "gril"}
+ ```
  - 字符串转数组
+ ```
+   let str = 'helloworld'
+   const arr = [...str]
+   console.log(arr) //["h", "e", "l", "l", "o", "w", "o", "r", "l", "d"]
+ ```

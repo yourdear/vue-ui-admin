@@ -17,6 +17,11 @@
         data() {
             return {}
         },
+        created() {
+            const [a,...rest] = [1,2,3,4];
+            console.log(a);
+            console.log(rest);
+        },
         components: {
             testSlot
         }
