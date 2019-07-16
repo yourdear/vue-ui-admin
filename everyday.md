@@ -538,3 +538,78 @@ Vue.component('icon-svg', Iconsvg) //注册为全局组件
     }
 </script>
 ```      
+  
+  ##### 2019-07-16
+  1.路由的导航守卫
+   - 全局守卫（需要写到main.js或者把js文件引入到main.js）
+   //前置守卫
+   ```
+   /*
+   * to 要进入的路由
+   * from 从那个路由离开
+   * next 是否显示下一个路由
+   */
+   router.beforeEach((to,from,next)=>{
+  if(to.path == '/login' || to.path == '/register'){
+    next();
+  }else{
+    alert('您还没有登录，请先登录');
+    next('/login');
+  }
+})
+```
+//后置守卫
+```
+router.afterEach((to,from)=>{
+  alert("after each");
+})
+```
+
+- 组件内的守卫 这里面的to,form与全局一致，区别在于next
+```
+// 如果直接在前置路由里面访问data里面的数据是访问不到的，因为生命周期的关系，如果需要访问data里面的数据需要用next里面的回调
+export default {
+    data(){
+        return{
+            name:"Arya"
+        }
+    },
+    //进入组件
+    beforeRouteEnter:(to,from,next)=>{
+        next(vm=>{
+            alert("hello" + vm.name);
+        })
+    },
+    //离开组件
+    // 点击其他组件时，判断是否确认离开。确认执行next()；取消执行next(false)，留在当前页面。
+    beforeRouteLeave:(to,from,next)=>{
+        if(confirm("确定离开此页面吗？") == true){
+            next();
+        }else{
+            next(false);
+        }
+    }
+}
+```
+-路由独享守卫
+```
+const route = [
+ {
+  path: '',
+  name: '',
+  component: '',
+  beforeEnter: (to,form,next) => {
+  
+  }
+ }
+]
+```
+2.扩展运算符
+ - 函数调用使用扩展运算符
+ - 数组和对象的拷贝
+ ```
+  const arr = [1,2,3]
+  
+ ```
+ - 构造字面量数组
+ - 字符串转数组
