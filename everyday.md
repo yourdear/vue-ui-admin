@@ -640,3 +640,96 @@ const route = [
    const arr = [...str]
    console.log(arr) //["h", "e", "l", "l", "o", "w", "o", "r", "l", "d"]
  ```
+2019-07-25
+1.vuecli结合ts使用，现在装监视器vue-property-decorator，对比传统的vuecli改变
+- script和data写法的不同
+```
+<script lang="ts">
+ import {Vue, Component} from 'vue-property-decorator';
+ @Component
+ expeort default class 当前组件名 extends Vue {
+  //传统的data已经没有了，改成了,直接声明的方式，但是不需要var,let,const
+        ValA: string = "helloworld";
+        ValB: number = 1;
+ }
+</script>
+```
+- computed的不同 只需要在计算属性加一个get关键字就好了，用法还是一样的
+```
+<script lang="ts">
+ import {Vue, Component} from 'vue-property-decorator';
+ @Component
+ expeort default class 当前组件名 extends Vue {
+   get ValA(): number{
+            return 1;
+        }
+ }
+</script>
+```
+- $emit写法的不同，之前是一个方法里面直接写,@Emit会把注解的方法，tuofeng 转化为-连接的写法
+```
+// 正常的写法
+emittodo() {
+ this.$emit('item-todo',param)
+}
+// ts写法
+@Emit
+emitTodo(n: any){
+//dosomething
+}
+//使用的时候
+this.$on('emit-todo',()=> {})
+
+//或者我们给定一个事件名字
+@Emit('reset')
+doSomething(param) {
+
+}
+this.$on('reset',(value) =>{})
+```
+- watch写法的改变
+```
+//正常写法
+ watch: {
+        'child': this.onChangeValue
+            // 这种写法默认 `immediate`和`deep`为`false`
+        ,
+        'person': {
+            handler: 'onChangeValue',
+            immediate: true,
+            deep: true
+        }
+    },
+    methods: {
+        onChangeValue(newVal, oldVal){
+            // todo...
+        }
+    }
+   // ts写法
+   @watch('person', {immediate: true,deep: true}) 
+   onChangeValue(newVal, oldVal){
+            // todo...
+        }
+```
+- prop写法的不同
+```
+//常规写法
+props: {
+    propA: {
+      type: Number
+    },
+    propB: {
+      default: 'default value'
+    },
+    propC: {
+      type: [String, Boolean]
+    },
+  }
+  // ts写法
+  @Prop(Number) propA!: number;
+  @Prop({default: 'default value'}) propB!: string;
+  @propC([String, Boolean]) propC: string | boolean;
+```
+- 
+
+
