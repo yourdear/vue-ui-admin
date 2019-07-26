@@ -640,7 +640,7 @@ const route = [
    const arr = [...str]
    console.log(arr) //["h", "e", "l", "l", "o", "w", "o", "r", "l", "d"]
  ```
-2019-07-25
+#####2019-07-25
 1.vuecli结合ts使用，现在装监视器vue-property-decorator，对比传统的vuecli改变
 - script和data写法的不同
 ```
@@ -730,6 +730,24 @@ props: {
   @Prop({default: 'default value'}) propB!: string;
   @propC([String, Boolean]) propC: string | boolean;
 ```
-- 
-
+##### 2019-07-26
+ts踩坑实录
+- 组件创建方式坑点
+```
+ // ts的class name必须大驼峰命名
+ export default class LayoutHeader extends Vue {
+   
+ }
+```
+- 组件的引入
+```
+ //第一个坑点 1.import引入组件名的时候必须加上.vue后缀 
+ import header form './Header.vue'
+ //第二个坑点 2.引入的方式
+ @Component({
+  components: {
+    header
+  }
+ })
+```
 
