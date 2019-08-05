@@ -754,3 +754,47 @@ ts踩坑实录
 
 需要在ts文件的最后一行再打一个空行
 
+##### 2019-08-05
+1.iframe的用法
+```
+// 基本用法 如果是get类型的直接把参数坠到后面 `url?param1=${param1}&param2=${param2}`
+<iframe src='' width='600px' height= '70%' id='' class='' frameborder='0'></iframe>
+```
+```
+// 进阶用法 如果参数过多需要使用post请求就需要借用form表单传值
+//只需要把之前的src赋值给action并且 让form的target和iframe的name值保持一致
+<form action='' ref='form' target='target1' method='post'>
+  <input type='hidden' name='data' value='' ref='input'></input>
+  <iframe  width='600px' height= '70%' id='' class='' frameborder='0' name='target1'></iframe>
+</form>
+
+function clickPrint() {
+    let form = this.$refs.form
+    let input = this.$refs.input
+    form.setAttribute('action', url)
+    input.setAttribute('value', param)
+    form.submit()
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
