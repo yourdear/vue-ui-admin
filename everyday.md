@@ -765,8 +765,8 @@ ts踩坑实录
 //只需要把之前的src赋值给action并且 让form的target和iframe的name值保持一致
 <form action='' ref='form' target='target1' method='post'>
   <input type='hidden' name='data' value='' ref='input'></input>
-  <iframe  width='600px' height= '70%' id='' class='' frameborder='0' name='target1'></iframe>
 </form>
+<iframe  width='600px' height= '70%' id='' class='' frameborder='0' name='target1'></iframe>
 
 function clickPrint() {
     let form = this.$refs.form
@@ -776,13 +776,43 @@ function clickPrint() {
     form.submit()
 }
 ```
-
-
-
-
-
-
-
+##### 2019-08-07
+1.element 菜单栏展开
+需要在el-menu-item或者el-submenu上添加:index='str',然后在el-menu上添加:default-open=['str']
+2.git问题汇总
+git reset --hard返回上一级更新
+拉分支成功之后需要把，代码push到服务器上
+git checkout master
+git pull
+git checkout -b dev1.0
+//稍等一会会发现分支会自动切换到dev1.0
+git push origin dev1.0
+git push --set-upstream origin dev1.0
+//修改了的东西要提交，不然你切回master的时候会发现，分支上修改的东西在master上生效了
+用webstrom提交的时候需要注意一下，push的时候看看提交的分支是不是对应远程的新分支
+如果不是的话 需要执行命令
+git branch --set-upstream-to=origin/分支名称
+3.递归浏览器不解析问题
+左边栏使用递归来写的，但是出现了浏览器不解析的问题，解决方法就是使用注册成全局组件
+import child form './child'
+Vue.component('child',child)
+使用的话就直接使用<child></child>,不需要再引入
+4.脚手架ie浏览器白屏问题，需要安装'babel-polyfill'
+安装之后还是不行的话就考虑，是不是vue.config.js里面的配置项有问题，我这次是css配置出现了问题，多配置了一个extract： true,注释掉这个就好了
+5.vue在新标签页打开页面
+```
+// target参数需要定义成_blank, 有几个参数就有几个input,input的name就是参数的字段
+<form action='' ref='form' target='_blank' method='post'>
+  <input type='hidden' name='data' value='' ref='input'></input>
+</form>
+function clickPrint() {
+    let form = this.$refs.form
+    let input = this.$refs.input
+    form.setAttribute('action', url)
+    input.setAttribute('value', param)
+    form.submit()
+}
+```
 
 
 
