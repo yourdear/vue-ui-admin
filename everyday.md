@@ -850,7 +850,37 @@ this.$nextTick(()=>{
 
 4.Vue filter用法
 ```
-
+   // 在常规脚手架的使用
+   1.全局的
+   Vue.filter(name, function(){})
+   2.局部的使用
+   export default {
+        data(){}
+          filters: {
+      /* 格式化时间戳 */
+      formatDate (val) {
+        const date = new Date(val);
+        const year = date.getFullYear();
+        const month = date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
+        const day = date.getDate() > 9 ? date.getDate() + 1 : `0${date.getDate() + 1}`;
+        return `${year}-${month}-${day}`;
+        console.log(val);
+      }
+   }
+   }
+   // 在dom元素里使用 方法的第一个参数默认就是通道前面的值
+   <div>{{1556466784645 | formatDate}}</div>
+   
+   // 在ts脚手架使用过滤器
+   import { numberFormat } form '@/common/filters'
+   @Component({
+     filters: {
+        numberFormat       
+     }
+   })
+   export default class CTable extends Vue {
+    
+   }
 ```
 
 
