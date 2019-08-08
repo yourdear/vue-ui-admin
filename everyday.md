@@ -815,9 +815,43 @@ function clickPrint() {
 ```
 
 
+##### 2019-08-08
+1.Vue 弹窗第二次获取焦点失效的问题
+原因是获取到焦点的时候，dom元素可能还没有加载完，所以需要使用
+```
+this.$nextTick(()=>{
 
+})
+```
+2.Element UI table
+如果如要后端返回的数据是scope.row[col],操作列相关的东西用item.value
 
+3. 表格的点击显示input输入框
+```
+// 定义列的字段的时候 给可以编辑的列添加一个表示 ex: {label: '销量', keyVal:'saleNumber', type: 'input'}
+//遍历字段时  给cell里面的span添加一个事件，定义一个变量，控制显示隐藏开关
+<el-table-column v-for="item in col" :label='item.label' :prop='item.prop' :key='item.prop'>
+    <template slot-scope='scope'>
+        <span v-if='!item.type'>{{scope.row[item.keyVal]}}</span>
+        <div v-else>
+            <el-input @blur="scope.row[item.keyVal + 'isshow'] === undefind" v-model="scope.row[item.keyVal]"
+               v-show="scope.row[item.keyVal + 'isshow']" :placeholder='scope.row[item.keyVal]'>
+               </el-input>
+            <span class='neewEdit' @click="scope.row[item.keyVal + 'isshow'] = true"
+                   v-show="scope.row[item.keyVal + 'isshow']  === undefind">
+                   {{scope.row[item.keyVal]}}
+            </span>
+            
+        </div>
+    </template>
+</el-table-column>
 
+```
+
+4.Vue filter用法
+```
+
+```
 
 
 
