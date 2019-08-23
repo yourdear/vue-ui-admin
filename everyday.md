@@ -945,7 +945,19 @@ this.$nextTick(()=>{
 </html>
 ```
 
+##### 2019-08-23
 
+1.事件的执行顺序
+先捕获，自己，再冒泡
+
+2.vue 操作dom节点，先从上往下捕获，如果想要获取指定的节点需要在节点上添加事件，然后通过ev.currentTarget获取当前的节点
+target会获取当前点击的元素
+
+3.vue里监听是否发生了事件
+```
+ window.addEventListener("click", ()=> {});
+
+```
 
 
 
