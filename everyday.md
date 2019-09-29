@@ -969,6 +969,21 @@ target会获取当前点击的元素
 ##### 2019-09-29
 1.下载附件 new Blob()不确定类型下载，需要后台返回文件的名字（带上后缀），type只需要给一个空串，再给下载的a标签a.download = 文件名，就可以在不规定文件类型的情况下正常下载任何文件（Ie有兼容性问题）
 
+2.element表格分组 
 
+tableData里面的每个对象都需要添加一个rowid，然后在table上挂载row-key，特别需要注意的是rowid要从1开始
 
+3.表格全选全不选的正常情况按照文档上来就好，如果是分过组的数据带的有children的，需要把children里面的数据也遍历点，然后再使用toggleRowSelection（child, true）
+
+4.前端静态资源下载的问题，在vue-cli3脚手架里，把文件放到public里面，然后直接使用window.open(服务器域名 + 前端静态资源放置的文件 + 文件名)
+
+5.在ts里面使用 async await ,
+```
+ public async fun() {
+    await promise 
+}
+
+fun.then()
+```
+6. upload上传的 附件的过滤，before-upload, 如果renturn true就会继续上传，如果是false就不会再上传
 
