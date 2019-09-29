@@ -7,6 +7,11 @@ const vue = {
             path:'slot',
             name: 'slot',
             component: reslove => require(['../components/vue/testSlot'],reslove) ,
+        },
+        {
+            path:'date',
+            name: 'date',
+            component: reslove => require(['../components/element/About'],reslove) ,
         }
     ]
 }
