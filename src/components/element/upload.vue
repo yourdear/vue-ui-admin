@@ -17,15 +17,26 @@
             <el-button size="small" type="primary">点击上传</el-button>
             <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
+        <el-progress :percentage="num" :status="uploadFlag"></el-progress>
         <el-button @click="submitUpload">保存</el-button>
+        <ctable></ctable>
     </div>
 </template>
 <script>
+    import ctable from './table'
     export default {
         data() {
             return {
-                fileList: []
+                fileList: [
+                    {name: '222.txt'},
+                    {name: '333.png'}
+                ],
+                num: 50,
+                uploadFlag: 'success'
             };
+        },
+        components: {
+            ctable
         },
         methods: {
             uploadFile(file) {
@@ -53,29 +64,22 @@
                 return this.$confirm(`确定移除 ${ file.name }？`);
             },
             submitUpload() {
-                // let formatData = new FormData() //用format保存上传的文件
-                // console.log(this.fileList)
-                // this.fileList.forEach(file => {
-                //     formatData.append('file',file.raw)
-                // })
-                // this.$refs.upload.submit()
                 console.log(this.fileList)
-                this.$http.get('/api/bot-admin/api/main/validate/getSendCode',{params: {mobile: '18715258879', type: 'login'}}).then(
-                    res => {
-                        console.log(res)
-                    }
-                ).catch(
-                    err => {
-                        console.log(err)
-                    }
-                )
+                this.num = 50
+                this.uploadFlag = 'exception'
             }
         },
         created() {
-
+            console.log('parent-c')
         },
         mounted() {
-
+            console.log('parent-m')
+        },
+        beforeDestroy() {
+            console.log('parent-bd')
+        },
+        destroyed() {
+            console.log('parent-d')
         },
 
     }

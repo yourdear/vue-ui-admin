@@ -1004,4 +1004,173 @@ fun.then()
 ##### 2019-10-12
 1.从后台直接请求的就是图片，不是base64,也不是路径，输出的就是一张二进制流的图片，怎么渲染到后台
 >这个时候直接把图片的src等于这个路径就好
->
+
+##### 2019-10-24
+1.this.$router与this.$route的区别
+- this.$router是全局的路由对象
+- this.$route是当前路由对象
+2.this.$router.push()跳转的问题，里面的路由一定要与你写的path保持一致
+```
+const route = {
+    path: '/srm',
+    component: ()=> import()
+    children: [
+        {
+            path: 'test',
+            component: ()=> import()  
+        }
+    ]
+}
+```
+如果想要跳转到 /srm/test路由就需要这样写
+- this.$router.push({path: 'test', query: {}}),可以传递参数
+- 或者this.$router.push('/srm/test'),
+
+####2019-12-16
+1.封装dialog注意事项
+ - 需要注意的是父组件的控制显示隐藏 不要与子组件的一样，并且要加.sync修饰符
+ - 子组件控制显示隐藏要通过监听父组件的变量来控制
+ - 子组件的@close事件需要去关闭父组件的变量（控制显示隐藏的boolean）
+```
+    //父组件引用
+<parentdialog :showDialog.sync='showDialog'></parentdialog>    
+
+// 子组件
+   <el-dialog 
+        title='xxx' 
+        :visable.sync='showthis'
+        @close='$emit('update:showDialog', false)'>
+</el-dialog>
+
+data: {
+    return{
+        showthis: false
+    }
+}
+props: {
+    showDialog: Boolean
+}
+```
+Watch:{
+    showDialog(newVal){
+        this.showthis = newVal
+    }
+}
+
+
+// render
+```
+惰性求值 值不改变就不会去渲染
+<div :class="{testClass: flag1, testClass2: 
+```
+//vuex 的缺陷
+
+
+//修改content-type
+- 在axios里面,默认是application/x-www-form-urlencoded，改成application/json;charset=UTF-8
+```
+const axiosService =  axios.create({})
+axiosService.interceptors.request.use((config)=> {
+    config['Content-Type'] = 'application/x-www-form-urlencoded'
+    if (config.headers) {
+        config.headers = {}
+        config.headers['Content-Type'] = 'application/json;charset=UTF-8'
+    }else {
+    config.headers = {}
+            config.headers['Content-Type'] = 'application/json;charset=UTF-8'
+    }
+
+})
+
+```
+
+
+// 摧毁当前页面
+
+// 让一个文件不在从本地缓存
+
+1.给那个文件添加一个随机数护着事件戳
+`````
+
+####2019-12-21
+1.一直混淆的vue绑定class
+ - 对象
+```flag2}"></div>
+
+data() {
+    return{
+        flag1: true,
+        flag2: true,    
+    }
+}
+
+<style scoped>
+    .testClass {
+        
+    }
+    .testClass2 {
+        
+    }
+</style>
+```
+- 数组
+```
+ <div :class="['testClass', flag1 ? '' : 'testClass2']"></div>
+data() {
+    return{
+        flag1: true,
+       
+    }
+}
+
+<style scoped>
+    .testClass {
+        
+    }
+    .testClass2 {
+        
+    }
+```
+
+2.通过vue ref来增加,移除class
+```
+ this.$refs.xxx.classList.add(className)
+this.$refs.xxx.classList.remove(className)
+```
+
+// 打包会不会把node-module依赖打进去
+
+
+//2020-01-04
+1.vue全局注册组件
+```
+import child from ...
+    vue.component(component, child)
+```
+
+// 2020-03-11
+1.导出excel ,注意需要在接口位置添加域名，可以用'/'代替
+window.location.href = ''
+2.用upload上传excel时
+
+// 2020-04-02
+1.url中特殊字符被转义成编码后如何处理
+![图片](./src/assets/mdImages/20200402/20180724164214464.png)
+转成正常的
+```
+let url = "http://www.baidu.com/signedUrl%3Fsignature=eyJhbGciOiJSUzI1NiJ9.ey";
+try {
+           URLDecoder.decode(url,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+```
+转译后
+
+```
+try {
+           URLEncoder.encode(url,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+```

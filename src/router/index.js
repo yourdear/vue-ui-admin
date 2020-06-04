@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import css from './css'
 import tvue from './vue'
+import jsTest from './js'
 Vue.use(Router)
 
 export default new Router({
@@ -25,9 +26,20 @@ export default new Router({
           name: 'upload',
           component: reslove => require(['../components/element/upload'],reslove)
         },
+        {
+          path: 'table',
+          name: 'table',
+          component: reslove => require(['../components/element/table'],reslove)
+        },
+        {
+          path: 'col',
+          name: 'col',
+          component: reslove => require(['../components/element/col'],reslove)
+        },
       ]
     },
     css,
-    tvue
+    tvue,
+    jsTest
   ]
 })
