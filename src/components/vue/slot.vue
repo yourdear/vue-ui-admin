@@ -12,12 +12,10 @@
         name: "TestSlot",
         data() {
             return {
-                user: {
-                    name: 'zxw',
-                    age: 26
-                }
+
             }
-        }
+        },
+        props: ['user']
     }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
     <div>
         测试页面
-        <test-slot>
+        <test-slot :user="user">
             <template #test="{user}">
                 <div>{{user.name}}</div>
                 <div>{{user.age}}</div>
@@ -15,7 +15,12 @@
     export default {
         name: "test",
         data() {
-            return {}
+            return {
+                user: {
+                    age: 26,
+                    name: '小凯',
+                },
+            }
         },
         created() {
             const [a,...rest] = [1,2,3,4];

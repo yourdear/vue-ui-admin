@@ -1174,3 +1174,18 @@ try {
             e.printStackTrace();
         }
 ```
+
+// 2020-08-12
+微服务配置心得
+使用的是耦合性比较高的方式，主工程和子工程共用一个Vue实例，共用一套路由，共用一套vuex
+```
+    1.把router暴露出来挂载到Vue.prototype
+         const router = ()=> (
+
+new VueRouter({
+           routes
+         }))
+        
+        export default router
+```
+

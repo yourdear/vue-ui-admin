@@ -27,6 +27,36 @@ const vue = {
             path:'testdirects',
             name: 'testdirects',
             component: reslove => require(['../components/vue/directs'],reslove) ,
+        },
+        {
+            path:'i18n',
+            name: '国际化',
+            component: reslove => require(['../components/vue/I18n.vue'],reslove) ,
+        },
+        {
+            path:'doubleBind',
+            name: '双向绑定',
+            component: reslove => require(['../components/vue/DoubleBind'],reslove) ,
+        },
+        {
+            path:'vuex',
+            name: 'vuex',
+            component: reslove => require(['../components/vue/vuex'],reslove) ,
+        },
+        {
+            path:'watch',
+            name: 'watch',
+            component: reslove => require(['../components/vue/watch'],reslove) ,
+        },
+        {
+            path:'filter',
+            name: '过滤器',
+            component: reslove => require(['../components/vue/filter.vue'],reslove) ,
+        },
+        {
+            path:'model',
+            name: '父子组件双向绑定',
+            component: reslove => require(['../components/vue/parentModelChid.vue'],reslove) ,
         }
     ]
 }

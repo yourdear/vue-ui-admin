@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import css from './css'
 import tvue from './vue'
 import jsTest from './js'
+import element from "./element";
 Vue.use(Router)
 
 export default new Router({
@@ -40,6 +41,7 @@ export default new Router({
     },
     css,
     tvue,
-    jsTest
+    jsTest,
+    element
   ]
 })

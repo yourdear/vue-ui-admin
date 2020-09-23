@@ -39,6 +39,12 @@
             ctable
         },
         methods: {
+            parserDate(date) {
+                var t = Date.parse(date)
+                if (!isNaN(t)) {
+                    return new Date(Date.parse(date.replace(/-/g, '/')))
+                }
+            },
             uploadFile(file) {
                 this.fileList.append('file', file.file)
             },
@@ -71,6 +77,8 @@
         },
         created() {
             console.log('parent-c')
+            let date = this.parserDate('2020-09-04')
+            console.log(date)
         },
         mounted() {
             console.log('parent-m')
