@@ -1189,3 +1189,31 @@ new VueRouter({
         export default router
 ```
 
+#### 2021-01-28
+moogdb常用命令
+访问数据库： mongo ip
+查看moogdb存在的数据库： show dbs
+新建数据库： use 数据库名称
+在数据库下新建表格并插入数据：db.表名.insert({"name":"小二",age:18})
+一定要传入数据 不然你使用show tables命令，发现建的表不存在
+查询表格数据 db.表名.find() //记住一定要在use 数据库名称之后用这个，而不是 use表格名后用这个
+删除表格数据db.表名.remove({})
+
+moogdb操作数据库
+1.moogdb一般都会用moongose操作数据库
+2.配置数据库信息
+ ![图片](./src/assets/mdImages/moogdb/配置.jpg)
+3.连接数据库
+![图片](./src/assets/mdImages/moogdb/连接数据库.jpg)
+4.接口进入服务端入口 route
+![图片](./src/assets/mdImages/moogdb/路由.jpg)
+5.controller控制层
+![图片](./src/assets/mdImages/moogdb/controller1.jpg)
+![图片](./src/assets/mdImages/moogdb/controller2.jpg)
+6.model操作层
+![图片](./src/assets/mdImages/moogdb/model1.jpg)
+![图片](./src/assets/mdImages/moogdb/model2.jpg)
+7.schema数据建模层，增删改查如果操作的是一张表，可以共用一个schema
+![图片](./src/assets/mdImages/moogdb/schema.jpg)
+#### 2020-01-29
+cookie令牌验证

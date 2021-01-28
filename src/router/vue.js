@@ -57,6 +57,11 @@ const vue = {
             path:'model',
             name: '父子组件双向绑定',
             component: reslove => require(['../components/vue/parentModelChid.vue'],reslove) ,
+        },
+        {
+            path:'menu',
+            name: '菜单',
+            component: reslove => require(['../components/layout/menu.vue'],reslove) ,
         }
     ]
 }

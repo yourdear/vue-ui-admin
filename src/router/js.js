@@ -27,6 +27,11 @@ const jsTest = {
             path:'testMd',
             name: '测试markdown',
             component: reslove => require(['../components/md/test.md'],reslove) ,
+        },
+        {
+            path:'promise',
+            name: '测试promise',
+            component: reslove => require(['../components/js/promise.vue'],reslove) ,
         }
     ]
 }

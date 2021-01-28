@@ -10,26 +10,35 @@
 <script>
     export default {
         data() {
-            num: ''   
+            return {
+              num: '初始化中'
+            }
         },
         mounted() {
-            this.getData().then(()=> {
-                console.log(this.num)
-                console.log('444')
-            })
+          // async语法  async function test() {}
+          // async 修饰函数表明当前函数是异步函数，调用async修饰的函数后，在后面打印一句话，会发现打印的话会先执行
+          // async 函数返回一个 Promise 对象，可以使用 then 方法添加回调函数。
+          // async通常配合await使用
+          // await语法 [返回值] = await 表达式;
+          // await可以修饰一个promise也可以修饰其他
+          // await 表达式会暂停当前 async function 的执行，等待 Promise 处理完成。若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 async function。
+          // 如果 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。
+          this.getNum()
         },
         methods: {
-            async getData() {
+          async  getNum() {
+           const value = await  this.resolveAfter2Seconds(5)
+            console.log(value)
+            console.log('last')
+          },
+          resolveAfter2Seconds(x) {
+            return new Promise(resolve => {
+              setTimeout(() => {
                 console.log('111')
-               await this.time()
-                console.log('222')
-            },
-            time(){
-                return new Promise(resolve => {
-                    this.num = '333'
-                    resolve('333') //这个数据导不到下一级，只能通过上面的方式
-                })
-            }
+                resolve(x);
+              }, 2000);
+            });
+          }
         }
     }
 </script>
