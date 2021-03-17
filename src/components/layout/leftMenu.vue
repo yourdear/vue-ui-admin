@@ -41,7 +41,6 @@
                     j++
                 }
             }
-            console.log(this.liname[0].children)
         },
         mounted() {
 

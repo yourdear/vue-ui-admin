@@ -38,7 +38,6 @@
         },
         methods: {
             resetParam() {
-                console.log(this.$refs.form)
                 this.$refs.form.resetFields()
             }
         }

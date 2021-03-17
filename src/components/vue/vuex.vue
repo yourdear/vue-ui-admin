@@ -10,6 +10,7 @@
             <el-button @click="anyscreduceH">-</el-button>
         </div>
         <div>{{count}}</div>
+        <div>{{test}}</div>
     </div>
 </template>
 
@@ -24,18 +25,22 @@
         computed: {
             count(){
                 return this.$store.state.app.pageCount
+            },
+            test() {
+                return this.$store.state.test.pageTest
             }
         },
         methods: {
             addH() {
                 this.$store.commit('app/CHANGEPAGECOUNT')
+                this.$store.commit('test/CHANGETEST')
             },
             reduceH() {
                 this.$store.commit('app/CHANGEDATA')
             },
             anyscreduceH() {
-
                 this.$store.dispatch('app/AYSNCCHANGEDATA')
+                this.$store.dispatch('test/AYSNCCHANGETEST')
             },
         }
     }

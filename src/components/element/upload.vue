@@ -51,7 +51,6 @@
             beforeUpload(file) {
                 debugger
                 this.fileList.push(file)
-                console.log(this.fileList)
                 return false
             },
             handleRemove(file, fileList) {
@@ -70,25 +69,13 @@
                 return this.$confirm(`确定移除 ${ file.name }？`);
             },
             submitUpload() {
-                console.log(this.fileList)
                 this.num = 50
                 this.uploadFlag = 'exception'
             }
         },
         created() {
-            console.log('parent-c')
             let date = this.parserDate('2020-09-04')
-            console.log(date)
-        },
-        mounted() {
-            console.log('parent-m')
-        },
-        beforeDestroy() {
-            console.log('parent-bd')
-        },
-        destroyed() {
-            console.log('parent-d')
-        },
+        }
 
     }
 </script>

@@ -11,6 +11,7 @@ import Iconsvg from './components/common/IconSvg'
 import i18n from './lang'
 import locale from 'element-ui/lib/locale/lang/en'
 import { serviceGet, servicepPost } from '@/service/axisoMethods'
+import Test from './utils/test'
 Vue.prototype.$get = serviceGet
 Vue.prototype.$post = servicepPost
 
@@ -22,6 +23,9 @@ Vue.config.productionTip = false
 Vue.filter('addNum',(val,val1, val2)=> {
   return val + val1 + val2
 })
+
+store.registerModule('test', Test.getStore().test)
+
 new Vue({
   router,
   store,

@@ -71,21 +71,9 @@
                 inputValue: ''
             }
         },
-        created() {
-            console.log('child-c')
-        },
-        mounted() {
-            console.log('child-m')
-        },
-        beforeDestroy() {
-            console.log('child-bd')
-        },
-        destroyed() {
-            console.log('child-d')
-        },
         methods: {
-            changeTable(val) {
-                console.log(val,'121')
+            changeTable() {
+
             },
             rowClick(row){
 
