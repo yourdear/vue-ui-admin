@@ -4,22 +4,21 @@ const state = {
 }
 
 const mutations = {
-  CHANGEPAGECOUNT: (state)=> {
+  CHANGEPAGECOUNT: (state) => {
     state.pageCount += 1
   },
-  CHANGEDATA: (state)=> {
+  CHANGEDATA: (state) => {
     state.pageCount -= 1
-  },
+  }
 }
 const actions = {
-  AYSNCCHANGEECOUNT: ({commit})=> {
+  AYSNCCHANGEECOUNT: ({ commit }) => {
     commit('CHANGEPAGECOUNT')
   },
-  AYSNCCHANGEDATA: ({commit})=> {
-    setTimeout(()=>{
+  AYSNCCHANGEDATA: ({ commit }) => {
+    setTimeout(() => {
       commit('CHANGEDATA')
-    },1000)
-
+    }, 1000)
   }
 }
 

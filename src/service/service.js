@@ -5,7 +5,7 @@ import qs from 'qs'
 const service = axios.create({
   // baseURL: process.env.BASE_API, // api的base_url
   // timeout: 5000, application/json;charset=UTF-8
-  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
   method: 'post', // 一般需要用post
   transformRequest: [function(data) {
     data = qs.stringify(data)
@@ -33,7 +33,7 @@ service.interceptors.response.use(
   },
   error => {
     console.log('err' + error)
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
 )
 

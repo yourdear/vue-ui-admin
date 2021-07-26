@@ -1217,3 +1217,17 @@ moogdb操作数据库
 ![图片](./src/assets/mdImages/moogdb/schema.jpg)
 #### 2020-01-29
 cookie令牌验证
+
+#### 2021-02-07
+<iframe src='' ref='testiframe'/>
+发起
+this.$refs.testiframe.contentWindow.poseMessage(
+postData, //要传递的数据
+location.origin
+)
+接收
+// 易错点 监听的时候不要写成init(),应该是一个回调函数
+window.addEventListener('message', init, false)
+function init(event) {
+console.log(event)
+}

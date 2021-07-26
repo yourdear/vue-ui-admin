@@ -1,16 +1,16 @@
 <template>
-    <div class="app">
-      <router-view class="app-router"/>
-    </div>
+  <div class="app">
+    <router-view class="app-router" />
+  </div>
 </template>
 <script>
-  export default {
-    data() {
-        return {}
-    },
-    created() {
-    }
+export default {
+  data() {
+    return {}
+  },
+  created() {
   }
+}
 </script>
 <style lang="stylus">
     html,body,.app,.app-router
