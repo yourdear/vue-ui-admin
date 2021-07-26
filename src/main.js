@@ -24,6 +24,9 @@ Vue.filter('addNum', (val, val1, val2) => {
   return val + val1 + val2
 })
 
+
+store.registerModule('test', Test.getStore().test)
+
 new Vue({
   router,
   store,
