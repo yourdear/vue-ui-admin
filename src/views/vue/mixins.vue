@@ -7,6 +7,10 @@
 </template>
 
 <script>
+import vue from "@/router/vue";
+import I18n from "./I18n"
+import axios from 'axios'
+import { saveFile } from 'api/index'
 export default {
   name: '',
   data() {

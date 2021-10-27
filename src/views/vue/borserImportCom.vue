@@ -26,12 +26,12 @@ export default {
       })
     },
     loadVue() {
-      // getFile().then(res=> {
-      //   this.contentData = res
-      //   console.log(res)
-      //   this.bindComponent(this.contentData, '#test')
-      // })
-      this.bindComponent(fileStr, '#test')
+      getFile().then(res=> {
+        this.contentData = res
+        console.log(res)
+        // this.bindComponent(this.contentData, '#test')
+      })
+      // this.bindComponent(fileStr, '#test')
     },
    async bindComponent(mainComponent, id) {
       const { loadModule, vueVersion } = window['vue2-sfc-loader']

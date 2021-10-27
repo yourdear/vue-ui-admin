@@ -74,6 +74,11 @@ const vue = {
       component: reslove => require(['../views/layout/menu.vue'], reslove)
     },
     {
+      path: 'vueDraggable',
+      name: 'vue拖拽',
+      component: reslove => require(['../views/vue/VueDraggable1.vue'], reslove)
+    },
+    {
       path: 'loterry',
       name: '彩票',
       component: reslove => require(['../views/lottery/grandLotto.vue'], reslove)

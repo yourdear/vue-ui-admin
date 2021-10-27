@@ -1221,7 +1221,7 @@ cookie令牌验证
 #### 2021-02-07
 <iframe src='' ref='testiframe'/>
 发起
-this.$refs.testiframe.contentWindow.poseMessage(
+this.$refs.testiframe.contentWindow.postMessage(
 postData, //要传递的数据
 location.origin
 )
@@ -1231,3 +1231,11 @@ window.addEventListener('message', init, false)
 function init(event) {
 console.log(event)
 }
+
+#### 2021-08-20
+npm包知识扩展
+- 之前使用npm的入口文件都是在，src/index.js或者src/app.js
+- 其实npm包的使用还可以是当前npm打包之后的地方 ex: /dist/xx.js
+npm 打包命令扩展
+rimraf ./dist/ 递归删除dist包内所有的内容
+
