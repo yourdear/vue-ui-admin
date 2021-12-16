@@ -21,7 +21,22 @@ module.exports = {
         secure: false,
         pathRewrite: {
           '^/api': '' // 代理的路径
-        }
+        },
+        // onProxyReq (proxyReq, req, res) {
+        //   // originHost = req.headers['x-forwarded-for']
+        //   const cookie = req.headers['cookie']
+        //   if (cookie) {  //如果设置的cookie不生效 可以在main.js里通过document.cookie配合此配置使用
+        //     proxyReq.setHeader('cookie', cookie)
+        //   }
+        // },
+        // onProxyRes(proxyRes, req, res) {
+        //   if (proxyRes.headers['set-cookie']) {
+        //     // 域名信息与实际业务相关
+        //     proxyRes.headers['set-cookie'] = proxyRes.headers['set-cookie'].map(v => {
+        //       return v.replace('domain=.mufeng.me', 'domain=' + originHost.split(':')[0])
+        //     })
+        //   }
+        // },
       }
     }
   },

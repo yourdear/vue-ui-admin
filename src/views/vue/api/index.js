@@ -24,6 +24,22 @@ const saveFile = (data) => {
   })
 }
 
+const getFileModel = (params)=> {
+  return new Promise((resolve, reject) => {
+     getFile(params).then(res=> {
+       if(res.code && res.code.toString().startWith('2')) {
+         // doSomeThing
+         resolve(res)
+       } else {
+         reject(res)
+       }
+     })
+  }).catch(err=> {
+    throw err
+  })
+}
+
+
 export {
   getZip,
   getFile,

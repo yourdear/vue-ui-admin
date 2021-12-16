@@ -5,6 +5,7 @@ import getters from './getters'
 Vue.use(Vuex)
 
 const modulesFiles = require.context('./modules', true, /\.js$/)
+console.log(modulesFiles.keys)
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
   const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
   const value = modulesFiles(modulePath)
@@ -12,7 +13,6 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
   return modules
 }, {})
 
-console.log(modules)
 const store = new Vuex.Store({
   modules,
   getters
