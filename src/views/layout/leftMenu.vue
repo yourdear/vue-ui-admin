@@ -36,7 +36,7 @@ export default {
         continue
       }
       this.liname.push({ name: item.name, path: item.path, children: [] })
-      const routerChildren = item?.children
+      const routerChildren = item && item.children
       if (routerChildren) {
         let i = 0
         for (i; i < routerChildren.length; i++) {

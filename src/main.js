@@ -18,14 +18,12 @@ Vue.prototype.$post = servicepPost
 Vue.use(tools)
 Vue.prototype.$http = axios
 Vue.component('icon-svg', Iconsvg) // 注册为全局组件
+
 Vue.use(ElementUI, { locale })
 Vue.config.productionTip = false
 Vue.filter('addNum', (val, val1, val2) => {
   return val + val1 + val2
 })
-
-
-store.registerModule('test', Test.getStore().test)
 
 new Vue({
   router,

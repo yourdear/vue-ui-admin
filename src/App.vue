@@ -13,10 +13,10 @@ export default {
 }
 </script>
 <style lang="stylus">
-    html,body,.app,.app-router
-        width 100%
-        height 100%
-        margin 0
-        padding 0
-        position relative
+  html, body, .app, .app-router
+    width 100%
+    height 100%
+    margin 0
+    padding 0
+    position relative
 </style>

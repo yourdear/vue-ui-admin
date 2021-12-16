@@ -1,21 +1,17 @@
 <template>
   <div id="my-app">
+    666666666666666
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
 export default {
   data() {
-    return {
-      componentName:''
-    }
+    return {}
   },
   created() {
-
-   this.componentName = httpVueLoader('borserImportCom.vue')
-    console.log(this.componentName)
-    Vue.component('testh', this.componentName)
+    // httpVueLoader.register(Vue, 'httpLoader.vue')
+    // console.log(this)
   }
 }
 </script>
