@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="login-box">
-      <h2 class="login-title">登录</h2>
+      <h2 class="login-title">登录修改后</h2>
       <el-form :model="formInline">
         <el-form-item>
           <el-input v-model="formInline.user"
@@ -20,8 +20,8 @@
   </div>
 </template>
 <script>
-import { getToken } from '../../api/login'
-import axios from 'axios'
+// import { getToken } from '../../api/login'
+// import axios from 'axios'
 export default {
   data() {
     return {
